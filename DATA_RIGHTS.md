@@ -1,6 +1,6 @@
-# Dataset Rights Decision
+# Dataset Rights and Redistribution
 
-## W5 decision
+## Redistribution decision
 
 Public redistribution of the OpenStack/Qt-derived data assets in this
 reproducibility package is **not approved at this stage**.
@@ -20,8 +20,7 @@ The following may be prepared for public release independently of this decision:
 - execution instructions;
 - documentation that does not redistribute restricted or rights-unverified data.
 
-Data-derived assets must not be publicly redistributed under the current W5
-decision.
+Data-derived assets must not be publicly redistributed under the current redistribution policy.
 
 ## Reconstruction approach
 

@@ -1,5 +1,5 @@
 {
-  "clean_environment_install_tested": false,
+  "clean_environment_install_tested": true,
   "decision": "ENVIRONMENT_SNAPSHOT_RECORDED",
   "packages": {
     "dice-ml": "0.12",
@@ -17,5 +17,5 @@
     "version": "3.13.16"
   },
   "scientific_behavior_changed": false,
-  "stage": "W1.4 — Environment Snapshot"
+  "stage": "Runtime Environment Snapshot"
 }

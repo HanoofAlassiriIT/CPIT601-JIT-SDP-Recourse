@@ -1,5 +1,5 @@
 {
-  "decision": "W1_CHECKPOINT_MANIFEST_CREATED",
+  "decision": "PACKAGE_FOUNDATION_MANIFEST_CREATED",
   "files": {
     "README.md": "5697f1ae28ce218bcec3e8d1b17188671587152eb0e7d5af332a37d5b48c39a2",
     "configs/config_provenance.json": "c204d33a83e68ab47a445533310aeafe47e65b48b02b9859d2a73ddb439c0024",
@@ -13,7 +13,7 @@
     "src/cpit601_recourse/config.py": "71b0330cc889fc5f027f72d74959961ef483ca0128592a69ee4bb1b256b729f0"
   },
   "scientific_behavior_changed": false,
-  "stage": "W1 checkpoint",
+  "stage": "Package Foundation Verification",
   "tracked_file_count": 10,
   "transient_python_cache_excluded": true
 }

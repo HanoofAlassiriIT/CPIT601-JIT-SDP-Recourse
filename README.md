@@ -50,35 +50,6 @@ Empirical plausibility is **not causal feasibility**.
 The package does not claim that changing a metric guarantees a
 specific real-world code edit or defect-prevention outcome.
 
-## Current implementation status
-
-Completed so far:
-
-- package directory structure;
-- frozen config copies;
-- config provenance;
-- environment snapshot;
-- pinned requirements;
-- `pyproject.toml`;
-- package namespace;
-- artifact-integrity utilities;
-- frozen config loader.
-
-Not yet completed:
-
-- input/schema validation;
-- frozen predictor loading;
-- frozen plausibility assets;
-- unified evaluator;
-- Proposed recourse generator;
-- DiCE baseline wrapper;
-- stable inference API/CLI;
-- unit tests;
-- notebook/package parity tests;
-- clean-environment installation;
-- integration/smoke tests;
-- manuscript-table regeneration.
-
 ## Reproducibility rule
 
 Refactoring is allowed only when it does not alter scientific behavior.
