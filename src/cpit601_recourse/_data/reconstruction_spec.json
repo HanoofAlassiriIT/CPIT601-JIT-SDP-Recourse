@@ -1,0 +1,86 @@
+{
+  "bundle_format_version": "1.0",
+  "byte_identical_joblib_required": false,
+  "final_config_sha256": "f1a96ed265f52b247b4ae33812f501a3be9007b9a1b2cc751dba75081d74368f",
+  "projects": {
+    "OpenStack": {
+      "author_date_end": 1393590700,
+      "author_date_start": 1322599384,
+      "dataset_member": "PyExplainer-replication-package/experiment/dataset/openstack_metrics.csv",
+      "dataset_sha256": "2b1d2128bee82e905b0233d6646c3fa88eed033e440482e2f89272a3dd436505",
+      "expected_clean_development_rows": 6757,
+      "features": [
+        "la",
+        "nd",
+        "ns",
+        "ent",
+        "nrev",
+        "rtime",
+        "self",
+        "ndev",
+        "age",
+        "app",
+        "rrexp",
+        "asawr",
+        "rsawr"
+      ],
+      "frozen_tau": 7.947140456773377,
+      "original_bundle_sha256": "7469c712b9107cb7def93898674cb39e4afc55e2f0abf7cac602f717ba73c997",
+      "upstream_path": "experiment/dataset/openstack_metrics.csv",
+      "upstream_raw_url": "https://raw.githubusercontent.com/awsm-research/pyExplainer/5df12399933d1faf2b28ba8f985cc7b3725d31c2/experiment/dataset/openstack_metrics.csv"
+    },
+    "Qt": {
+      "author_date_end": 1395090476,
+      "author_date_start": 1308350292,
+      "dataset_member": "PyExplainer-replication-package/experiment/dataset/qt_metrics.csv",
+      "dataset_sha256": "656e6c1b3f06f2bab3329ae002bccdbbfd709b15f8b65cd2f070bbaa6713b48c",
+      "expected_clean_development_rows": 14124,
+      "features": [
+        "la",
+        "ld",
+        "nd",
+        "ns",
+        "ent",
+        "nrev",
+        "rtime",
+        "hcmt",
+        "self",
+        "ndev",
+        "age",
+        "app",
+        "asexp",
+        "rsexp",
+        "asawr",
+        "rsawr"
+      ],
+      "frozen_tau": 22.183025376655454,
+      "original_bundle_sha256": "39fcdd305d65e9b8c5a1575363e5d056a4fbd32af8ce2eb3e8a4b6161a58ef0a",
+      "upstream_path": "experiment/dataset/qt_metrics.csv",
+      "upstream_raw_url": "https://raw.githubusercontent.com/awsm-research/pyExplainer/5df12399933d1faf2b28ba8f985cc7b3725d31c2/experiment/dataset/qt_metrics.csv"
+    }
+  },
+  "purpose": "Reconstruct CPIT601 runtime assets from the PyExplainer replication-package source datasets.",
+  "scientific_parity_required": true,
+  "shared_settings": {
+    "clean_reference_class": 0,
+    "development_fraction_of_train": 0.8,
+    "knn_k": 5,
+    "knn_metric": "euclidean",
+    "official_train_fraction": 0.7,
+    "rf_n_estimators": 100,
+    "rf_random_state": 0,
+    "scaler": "RobustScaler",
+    "smote_k_neighbors": 5,
+    "smote_random_state": 42,
+    "threshold_percentile": 99
+  },
+  "source_access_mode": "pinned_official_commit",
+  "source_checkpoint": {
+    "name": "after_M7_before_N/CORE_STATE_after_M7.joblib",
+    "sha256": "5e776484a3cac4e4267fea11b2dc0c1fd9d4f7a1f954feb1ebb1772e9cb4a250"
+  },
+  "spec_version": "1.0",
+  "upstream_commit_sha": "5df12399933d1faf2b28ba8f985cc7b3725d31c2",
+  "upstream_license": "MIT",
+  "upstream_repository": "https://github.com/awsm-research/pyExplainer"
+}

@@ -1,0 +1,201 @@
+{
+  "decision_point": {
+    "definition": "Required review-related predictor information is observable while the pending change can still be revised before integration.",
+    "name": "pre_integration_recourse"
+  },
+  "dice": {
+    "desired_class": 0,
+    "method": "random",
+    "per_query_seed_rule": "global_seed + zero_based_query_position",
+    "primary_baseline": "DiCE-Strict",
+    "primary_global_seed": 42,
+    "sample_size": 1000,
+    "total_CFs": 3
+  },
+  "evaluation": {
+    "internal_frozen_methods": [
+      "DiCE-All",
+      "DiCE-Strict",
+      "Proposed-Strict",
+      "DiCE-Extended",
+      "Proposed-Extended"
+    ],
+    "post_hoc_test_tuning_allowed": false,
+    "primary_endpoint": "usable_commit_coverage",
+    "primary_internal_comparison": [
+      "Proposed-Strict",
+      "DiCE-Strict"
+    ],
+    "quality_best_cf_ranking": [
+      "n_changed_features",
+      "plausibility_ratio",
+      "robust_l1",
+      "defect_probability"
+    ],
+    "runtime_includes_unsuccessful_queries": true,
+    "statistical_unit": "commit"
+  },
+  "feature_order": {
+    "OpenStack": [
+      "la",
+      "nd",
+      "ns",
+      "ent",
+      "nrev",
+      "rtime",
+      "self",
+      "ndev",
+      "age",
+      "app",
+      "rrexp",
+      "asawr",
+      "rsawr"
+    ],
+    "Qt": [
+      "la",
+      "ld",
+      "nd",
+      "ns",
+      "ent",
+      "nrev",
+      "rtime",
+      "hcmt",
+      "self",
+      "ndev",
+      "age",
+      "app",
+      "asexp",
+      "rsexp",
+      "asawr",
+      "rsawr"
+    ]
+  },
+  "freeze_rules": {
+    "feature_mask_changes": false,
+    "max_changes_tuning": false,
+    "n_anchors_tuning": false,
+    "plausibility_k_changes": false,
+    "plausibility_threshold_changes": false,
+    "predictor_tuning": false,
+    "ranking_order_changes": false,
+    "test_driven_baseline_replacement": false,
+    "test_driven_method_redesign": false,
+    "test_driven_parameter_changes": false,
+    "top_k_tuning": false
+  },
+  "generator": {
+    "anchor_pool": "real_clean_Development_commits",
+    "anchor_retrieval_space": "full_predictor_feature_space",
+    "max_changes": 3,
+    "n_anchors": 20,
+    "ranking": [
+      "n_changed_features",
+      "plausibility_ratio",
+      "robust_l1",
+      "defect_probability"
+    ],
+    "ranking_direction": "ascending_lexicographic",
+    "return_only_usable": true,
+    "top_k": 3
+  },
+  "masks": {
+    "OpenStack": {
+      "extended": [
+        "la",
+        "nd",
+        "ns",
+        "ent"
+      ],
+      "strict": [
+        "la",
+        "nd",
+        "ns"
+      ]
+    },
+    "Qt": {
+      "extended": [
+        "la",
+        "ld",
+        "nd",
+        "ns",
+        "ent"
+      ],
+      "strict": [
+        "la",
+        "ld",
+        "nd",
+        "ns"
+      ]
+    },
+    "ent_role": "Extended_only",
+    "primary_configuration": "Strict"
+  },
+  "plausibility": {
+    "Test_reference_allowed": false,
+    "Validation_reference_allowed": false,
+    "accept_if_ratio_leq": 1.0,
+    "causal_feasibility_claim": false,
+    "distance": "Euclidean",
+    "generated_reference_allowed": false,
+    "k": 5,
+    "plausibility_ratio": "candidate_mean_knn_distance / project_threshold",
+    "reference": "real_clean_Development_only",
+    "scaler": "RobustScaler",
+    "threshold": {
+      "OpenStack": 7.947140456773377,
+      "Qt": 22.183025376655454
+    },
+    "threshold_definition": "99th percentile of leave-one-out mean kNN distance among real clean Development commits",
+    "threshold_percentile": 99.0
+  },
+  "predictor": {
+    "desired_recourse_class": 0,
+    "imbalance": "SMOTE_Development_only",
+    "n_estimators": 100,
+    "predictor_tuning_after_freeze": false,
+    "random_state": 0,
+    "smote_random_state": 42,
+    "training_split": "Development_only",
+    "type": "RandomForestClassifier"
+  },
+  "protocol_version": "FINAL_CONFIG_v1",
+  "reproducibility_records": {
+    "P_no_test_audit": "results/governance/P/p_final_no_test_audit.json",
+    "decision_log": "results/validation/experiment_decision_log.csv",
+    "environment_record": "results/reproducibility/N4/section_N_randomness_reproducibility_closure.json",
+    "seed_log": "results/reproducibility/N4/n4_seed_log.csv"
+  },
+  "research_scope": "Feasibility-Aware Counterfactual Recourse for Just-in-Time Software Defect Prediction",
+  "semantic_validity": {
+    "OpenStack_integer_like": [
+      "la",
+      "nd",
+      "ns",
+      "nrev",
+      "self",
+      "ndev",
+      "app",
+      "rrexp"
+    ],
+    "Qt_integer_like": [
+      "la",
+      "ld",
+      "nd",
+      "ns",
+      "nrev",
+      "hcmt",
+      "self",
+      "ndev",
+      "app",
+      "asexp",
+      "rsexp"
+    ],
+    "changed_integer_like_metrics_must_be_integer": true,
+    "finite_values_required": true,
+    "observed_min_max_bounds_used": false
+  },
+  "usability": {
+    "definition": "prediction_valid AND actionable AND empirically_plausible AND semantic_valid",
+    "same_post_generation_evaluator_for_all_methods": true
+  }
+}

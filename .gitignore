@@ -1,0 +1,39 @@
+# CPIT601 generated Python files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Build and packaging outputs
+build/
+dist/
+*.egg-info/
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Notebook-generated state
+.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+
+# Rights-unverified frozen/data-derived assets
+*.joblib
+*.pkl
+*.pickle
+*.parquet
+*.feather
+*.arff
+
+# Local/raw dataset locations
+data/
+datasets/
+raw_data/
+local_assets/
+
+# Environment secrets
+.env

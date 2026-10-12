@@ -1,0 +1,22 @@
+{
+  "decision": "CONFIG_PROVENANCE_RECORDED",
+  "final_config": {
+    "byte_identical": true,
+    "package_path": "configs/final_config.json",
+    "package_sha256": "f1a96ed265f52b247b4ae33812f501a3be9007b9a1b2cc751dba75081d74368f",
+    "source_path": "/content/drive/MyDrive/CPIT601/results/governance/Q/FINAL_CONFIG_v1.json",
+    "source_sha256": "f1a96ed265f52b247b4ae33812f501a3be9007b9a1b2cc751dba75081d74368f"
+  },
+  "new_counterfactual_generation": false,
+  "new_prediction": false,
+  "new_training": false,
+  "scientific_configuration_modified": false,
+  "stage": "W1.3 — Frozen Config Provenance",
+  "validation_config": {
+    "byte_identical": true,
+    "package_path": "configs/validation_config.json",
+    "package_sha256": "3e263487177a45ec54b103635eeeb4ad39f534ff3a9199b2e8f1e6b4db3deaab",
+    "source_path": "/content/drive/MyDrive/CPIT601/checkpoints/after_M7_before_N/VALIDATION_CONFIG_after_M7.json",
+    "source_sha256": "3e263487177a45ec54b103635eeeb4ad39f534ff3a9199b2e8f1e6b4db3deaab"
+  }
+}

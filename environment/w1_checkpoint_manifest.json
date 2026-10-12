@@ -1,0 +1,19 @@
+{
+  "decision": "W1_CHECKPOINT_MANIFEST_CREATED",
+  "files": {
+    "README.md": "5697f1ae28ce218bcec3e8d1b17188671587152eb0e7d5af332a37d5b48c39a2",
+    "configs/config_provenance.json": "c204d33a83e68ab47a445533310aeafe47e65b48b02b9859d2a73ddb439c0024",
+    "configs/final_config.json": "f1a96ed265f52b247b4ae33812f501a3be9007b9a1b2cc751dba75081d74368f",
+    "configs/validation_config.json": "3e263487177a45ec54b103635eeeb4ad39f534ff3a9199b2e8f1e6b4db3deaab",
+    "environment/runtime_versions.json": "6813e9ebc1ce69d989a04f366948cde14e96330d1bca04080baf2d95f95aa4c5",
+    "pyproject.toml": "25c61e54612fc88700719b19956f135921cd207c45b0343e0261e46a5a03154b",
+    "requirements.txt": "5653bf9c6ce745b6bca24fbd6d8b3c7f9a9125a5d599e3f51a69fcc6d2a3997b",
+    "src/cpit601_recourse/__init__.py": "60512e4ba6a6b841da322cf732f52ac9d7298110191cda6a8ed8e266c7f99147",
+    "src/cpit601_recourse/artifacts.py": "9f8b325fd999448a1eb679ccbee8d6d4ad8152b2f7f8f6235f5615d9979d6c68",
+    "src/cpit601_recourse/config.py": "71b0330cc889fc5f027f72d74959961ef483ca0128592a69ee4bb1b256b729f0"
+  },
+  "scientific_behavior_changed": false,
+  "stage": "W1 checkpoint",
+  "tracked_file_count": 10,
+  "transient_python_cache_excluded": true
+}

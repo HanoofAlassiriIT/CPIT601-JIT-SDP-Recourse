@@ -1,0 +1,112 @@
+{
+  "global_seed": 42,
+  "predictor": {
+    "type": "RandomForestClassifier",
+    "n_estimators": 100,
+    "random_state": 0,
+    "imbalance_method": "SMOTE",
+    "smote_scope": "development_only"
+  },
+  "evaluation": {
+    "population": "validation_true_positives_only",
+    "desired_class": 0,
+    "openstack_validation_tp": 61,
+    "qt_validation_tp": 45,
+    "max_returned_cfs": 3
+  },
+  "feature_masks": {
+    "openstack": {
+      "strict": [
+        "la",
+        "nd",
+        "ns"
+      ],
+      "extended": [
+        "la",
+        "nd",
+        "ns",
+        "ent"
+      ]
+    },
+    "qt": {
+      "strict": [
+        "la",
+        "ld",
+        "nd",
+        "ns"
+      ],
+      "extended": [
+        "la",
+        "ld",
+        "nd",
+        "ns",
+        "ent"
+      ]
+    }
+  },
+  "plausibility": {
+    "reference": "real_clean_development_only",
+    "scaler": "RobustScaler",
+    "distance": "euclidean",
+    "k": 5,
+    "threshold_method": "leave_one_out_clean_distances",
+    "threshold_percentile": 99,
+    "accept_if_ratio_leq": 1.0,
+    "openstack_threshold": 7.9471,
+    "qt_threshold": 22.183
+  },
+  "dice": {
+    "method": "random",
+    "sample_size": 1000,
+    "total_CFs": 3,
+    "desired_class": 0
+  },
+  "proposed": {
+    "anchor_pool": "real_clean_development_only",
+    "n_anchors": 20,
+    "max_changes": 3,
+    "top_k": 3,
+    "ranking": [
+      "n_changed_features",
+      "plausibility_ratio",
+      "robust_l1",
+      "defect_probability"
+    ]
+  },
+  "rules": {
+    "test_data_for_tuning": false,
+    "strict_mask_can_change_from_validation_results": false,
+    "claim_causal_feasibility": false,
+    "claim_final_superiority_from_validation": false
+  },
+  "semantic_validity": {
+    "require_finite_values": true,
+    "integer_like_source": "full_development_only",
+    "openstack_integer_like": [
+      "la",
+      "nd",
+      "ns",
+      "nrev",
+      "self",
+      "ndev",
+      "app",
+      "rrexp"
+    ],
+    "qt_integer_like": [
+      "la",
+      "ld",
+      "nd",
+      "ns",
+      "nrev",
+      "hcmt",
+      "self",
+      "ndev",
+      "app",
+      "asexp",
+      "rsexp"
+    ],
+    "usable_core": "prediction_is_clean AND plausibility_ratio<=1 AND changed_features_subset_of_allowed_features",
+    "final_usable": "usable_core AND semantic_valid",
+    "note": "Added during Validation before Method Freeze after DiCE-All audit exposed fractional values for integer-like count metrics. Applied symmetrically to all methods."
+  }
+}

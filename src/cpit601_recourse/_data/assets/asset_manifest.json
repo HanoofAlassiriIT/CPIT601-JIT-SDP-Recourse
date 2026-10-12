@@ -1,0 +1,30 @@
+{
+  "asset_manifest_version": "1.0",
+  "bundles": {
+    "OpenStack": {
+      "path": "assets/openstack.joblib",
+      "sha256": "7469c712b9107cb7def93898674cb39e4afc55e2f0abf7cac602f717ba73c997",
+      "size_bytes": 5458452
+    },
+    "Qt": {
+      "path": "assets/qt.joblib",
+      "sha256": "39fcdd305d65e9b8c5a1575363e5d056a4fbd32af8ce2eb3e8a4b6161a58ef0a",
+      "size_bytes": 9574630
+    }
+  },
+  "decision": "FROZEN_ASSET_MANIFEST_CREATED",
+  "final_config": {
+    "path": "configs/final_config.json",
+    "sha256": "f1a96ed265f52b247b4ae33812f501a3be9007b9a1b2cc751dba75081d74368f"
+  },
+  "public_redistribution_approved": false,
+  "public_redistribution_status": "NOT_APPROVED_RIGHTS_UNVERIFIED",
+  "public_release_instruction": "Exclude data-derived package assets from public redistribution until the source dataset redistribution rights are independently verified.",
+  "scientific_settings_source": "configs/final_config.json",
+  "source_checkpoint": {
+    "name": "after_M7_before_N/CORE_STATE_after_M7.joblib",
+    "sha256": "5e776484a3cac4e4267fea11b2dc0c1fd9d4f7a1f954feb1ebb1772e9cb4a250"
+  },
+  "training_or_refit_performed": false,
+  "w5_rights_decision": "No explicit local evidence was found that authorizes public redistribution of the OpenStack/Qt-derived package assets."
+}
