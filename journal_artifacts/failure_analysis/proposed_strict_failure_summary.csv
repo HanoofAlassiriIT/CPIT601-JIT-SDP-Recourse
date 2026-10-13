@@ -1,0 +1,4 @@
+project,failure_category,n_failures
+OpenStack,No CLEAN prediction flip under frozen Strict search,6
+Qt,"CLEAN prediction flips found, but none were empirically plausible",2
+Qt,No CLEAN prediction flip under frozen Strict search,7

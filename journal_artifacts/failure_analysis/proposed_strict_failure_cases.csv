@@ -1,0 +1,16 @@
+project,commit_id,n_unique_candidates,n_prediction_flips_internal,n_plausible_internal,n_valid_and_plausible_internal,failure_category
+OpenStack,03a41f863b160384593ef8df130f369a0c22d393,53,0,68,0,No CLEAN prediction flip under frozen Strict search
+OpenStack,a2dca1ffc3e6ba81862c0eff625b620f3f175690,63,0,49,0,No CLEAN prediction flip under frozen Strict search
+OpenStack,eb87f1fae8f13c7ab09c9fec56bbfa1fdfdf17fc,65,0,84,0,No CLEAN prediction flip under frozen Strict search
+OpenStack,f63d2f67ed1e7b8246b36bd08517a55a702a48a9,59,0,76,0,No CLEAN prediction flip under frozen Strict search
+OpenStack,41e3a94ae18a9219ff4ab10389f3a7799c9b6493,21,0,30,0,No CLEAN prediction flip under frozen Strict search
+OpenStack,cbe1d5f5e22e5f792128643e4cdd6afb2ff2b5bf,65,0,78,0,No CLEAN prediction flip under frozen Strict search
+Qt,3168c94577cc604fd033ce4e741da5c411f74666,155,0,200,0,No CLEAN prediction flip under frozen Strict search
+Qt,404598b61366e681100893052fdb394702d3bcbf,118,82,0,0,"CLEAN prediction flips found, but none were empirically plausible"
+Qt,9c82c105a1886473ca144b802ce9f5bec01e35e8,130,0,163,0,No CLEAN prediction flip under frozen Strict search
+Qt,aed9a8d49b7470de6809c3bf747b14c7150d7ae6,124,0,142,0,No CLEAN prediction flip under frozen Strict search
+Qt,19b7afca523f221494bd165680f1aa9ddf3a0e31,110,0,138,0,No CLEAN prediction flip under frozen Strict search
+Qt,0eade30f37980c38b14d5cfa475837d15b69a8c5,184,0,214,0,No CLEAN prediction flip under frozen Strict search
+Qt,459c9a2a8840995436e610459216957bc7ebd914,199,0,231,0,No CLEAN prediction flip under frozen Strict search
+Qt,97c187da3c1381bc55dd16976bf9fb3c773d0047,216,18,0,0,"CLEAN prediction flips found, but none were empirically plausible"
+Qt,173d16efb54ccc152f19afb9b1c2a87915fb414b,156,0,185,0,No CLEAN prediction flip under frozen Strict search
