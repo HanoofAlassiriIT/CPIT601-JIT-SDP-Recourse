@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated research article."
+title: "Feasibility-Aware Counterfactual Recourse for Just-in-Time Software Defect Prediction"
+type: software
+authors:
+  - family-names: "Alassiri"
+    given-names: "Hanoof"
+repository-code: "https://github.com/HanoofAlassiriIT/CPIT601-JIT-SDP-Recourse"

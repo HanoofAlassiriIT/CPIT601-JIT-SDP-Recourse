@@ -90,3 +90,11 @@ The source CSV files are verified by SHA256 before reconstruction.
 Open `notebooks/CPIT601_Demo.ipynb` in Google Colab and run all cells from top to bottom.
 
 The demo automatically installs the package, reconstructs the verified runtime assets, and runs a real OpenStack counterfactual-recourse example.
+
+## Journal development branch
+
+The `journal-v1` branch extends the frozen `CPIT601-v1.0` research artifact for journal preparation.
+
+The scientific core remains frozen. Journal-specific work may add documentation, analyses, figures, and reproducibility materials without retuning the held-out Test configuration.
+
+The corresponding journal release will receive a separate version tag after final verification.
