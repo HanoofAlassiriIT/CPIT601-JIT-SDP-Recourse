@@ -208,7 +208,7 @@ def read_verified_upstream_project_csv(
             f"{project} upstream SHA256 mismatch. "
             f"Expected {expected_sha256}, got {actual_sha256}."
         )
-
+    """نحمل الداتا من ملفات المصدر الى داتا فريم"""
     frame = pd.read_csv(
         io.BytesIO(
             raw_bytes
