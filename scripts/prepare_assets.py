@@ -177,7 +177,7 @@ def read_verified_upstream_project_csv(
     ][
         project
     ]
-
+    """رابط تحميل الداتا التجريبية"""
     url = project_spec[
         "upstream_raw_url"
     ]
