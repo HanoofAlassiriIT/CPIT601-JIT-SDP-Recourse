@@ -306,7 +306,7 @@ def reconstruct_project_bundle(
             <= project_spec["author_date_end"]
         )
     ].copy()
-
+    """يرجع قيمة 0 اذا مافيه اي اخطاء او قيمة 1 اذا فيه اي عدد من الاخطاء اكبر من صفر"""
     frame["defect"] = (
         frame["bugcount"] > 0
     ).astype(
