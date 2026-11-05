@@ -316,8 +316,11 @@ def reconstruct_project_bundle(
     ).astype(
         int
     )
-
-    frame["author_datetime"] = pd.to_datetime(
+"""دالة تحويل التاريخ"""
+# هنا نحتفظ فقط بالـ commits اللي تقع تواريخها
+# داخل الفترة المحددة لكل مشروع في ملف الإعدادات.
+# أي commit خارج الفترة نستبعده من بيانات التجربة.    
+frame["author_datetime"] = pd.to_datetime(
         frame["author_date"],
         unit="s",
     )
@@ -327,11 +330,14 @@ def reconstruct_project_bundle(
     ).reset_index(
         drop=True
     )
-
+# نحول self إلى 1 إذا كانت القيمة True حرفيًا،
+# وإلى 0 في باقي الحالات.
+# ونحول rtime و age من الثواني إلى الأيام
+# حسب المعالجة المعتمدة في المشروع.
     frame["self"] = frame["self"].apply(
         lambda value: 1 if value is True else 0
     )
-
+"""تحويل ادناه الى ايام """
     frame["rtime"] = (
         frame["rtime"] / 3600
     ) / 24
@@ -349,12 +355,12 @@ def reconstruct_project_bundle(
     ].astype(
         int
     ).copy()
-
+"""استبعاد الاعمدة غير المستخدمة ومعالجة القيم المفقودة"""
     drop_columns = [
         "author_date",
         "author_datetime",
-        "bugcount",
-        "fixcount",
+        "bugcount", """مستبعد لانه مرتبط بالاجابة الصحيحة التي يتم محاولة التنبؤ بها"""
+        "fixcount", """مستبعد لانه مرتبط بالاجابة الصحيحة التي يتم محاولة التنبؤ بها"""
         "revd",
         "tcmt",
         "oexp",
@@ -363,26 +369,26 @@ def reconstruct_project_bundle(
         "osawr",
         "defect",
     ]
-
+"""اختيار الخصائص وتخزينها في اكس"""
     X_all = frame.drop(
         columns=drop_columns
-    ).fillna(
+    ).fillna( """لتعويض القيم المفقودة بصفر"""
         0
     )
-
+    
     X = X_all[
-        project_spec["features"]
+        project_spec["features"] """استخدام الخصائص المعتمدة للمشروعين فقط"""
     ].copy()
 
     train_end = int(
         len(X)
         * settings["official_train_fraction"]
     )
-
+    """معلومات نتعلم منها"""
     X_train = X.iloc[
         :train_end
     ].copy()
-
+    """معلومات نحاول التنبؤ بها"""
     y_train = y.iloc[
         :train_end
     ].copy()
