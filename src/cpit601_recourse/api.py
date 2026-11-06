@@ -115,6 +115,13 @@ def run_recourse(
     configuration_name = configuration_names[
         configuration_normalized
     ]
+#
+# من السطر 119 إلى 131:
+# هنا نرسل خصائص الـ commit الأصلي للنموذج الثابت.
+# نحفظ التصنيف المتوقع في original_prediction،
+# ونحفظ احتمال العيب في original_defect_probability.
+# هذي الخطوة ما تولد اقتراحات ولا تعيد تدريب النموذج،
+# بس تعطينا توقعه الأصلي قبل تطبيق Recourse.
 
     original_prediction = int(
         predict_labels(
