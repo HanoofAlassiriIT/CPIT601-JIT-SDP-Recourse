@@ -187,6 +187,13 @@ def generate_clean_anchor_cfs(
         0
     ]
 
+# من السطر 175 إلى 189:
+# هنا نحمل بيانات الـ commits النظيفة الحقيقية
+# من Development، ومعها RobustScaler ونموذج الجيران.
+# الأدوات هذي مجهزة مسبقًا وما ندربها من جديد هنا.
+# بنستخدمها عشان نبحث عن أقرب Clean Anchors
+# للـ commit اللي نبغى نطلع له اقتراحات.
+
     context = load_plausibility_context(
         project
     )
@@ -210,6 +217,14 @@ def generate_clean_anchor_cfs(
             "Frozen clean Development reference schema mismatch."
         )
 
+# من السطر 198 إلى 216:
+# أول شيء نحول خصائص الـ commit باستخدام نفس RobustScaler
+# اللي استخدمناه مع بيانات Development النظيفة.
+# بعدها نبحث عن أقرب 20 commit نظيف باستخدام kneighbors.
+# البحث يكون في كامل خصائص النموذج، مو Strict فقط.
+# الدالة ترجع مواقع المراجع الأقرب داخل X_clean.
+# هنا نختار المراجع فقط، ولسه ما ولدنا الاقتراحات.
+
     query_scaled = scaler.transform(
         query_features
     )
@@ -231,6 +246,13 @@ def generate_clean_anchor_cfs(
     )
 
     candidate_records = []
+
+# من السطر 220 إلى 230:
+# هنا نمر على الـ Clean Anchors المختارة واحد واحد.
+# لكل Anchor نجيب قيم خصائصه من X_clean،
+# ونحفظ رقم ترتيبه ومعرف الـ commit الحقيقي.
+# بعدها نستخدم قيمه في محاولات توليد الاقتراحات،
+# لكن ما ننسخ كل خصائصه للـ commit الأصلي.
 
     for anchor_rank, anchor_idx in enumerate(
         anchor_indices,
