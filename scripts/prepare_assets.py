@@ -411,10 +411,25 @@ frame["author_datetime"] = pd.to_datetime(
         random_state=settings["smote_random_state"],
     )
 
+# من السطر 399 إلى 407:
+# هنا نستخدم SMOTE عشان نوازن الفئات في Development فقط.
+# نستخدم 5 جيران لتوليد عينات اصطناعية للفئة الأقل عددًا.
+# وثبتنا random_state على 42 عشان نقدر نعيد نفس التجربة.
+# العينات الجديدة نستخدمها في تدريب النموذج فقط،
+# وما نستخدم Validation أو Test في عملية SMOTE.
+
     X_dev_smote, y_dev_smote = smote.fit_resample(
         X_dev,
         y_dev,
     )
+
+# من السطر 409 إلى 418:
+# هنا ننشئ Random Forest بعدد 100 شجرة.
+# اخترنا إعدادًا ثابتًا للنموذج بدل ما نغيره
+# أثناء مقارنة طريقتنا المقترحة مع DiCE.
+# random_state=0 يثبت العشوائية أثناء التدريب.
+# بعدها fit تدرب النموذج على Development بعد SMOTE.
+# هدف بحثنا تقييم Recourse مو تحسين إعدادات المصنف.
 
     predictor = RandomForestClassifier(
         n_estimators=settings["rf_n_estimators"],
@@ -426,6 +441,13 @@ frame["author_datetime"] = pd.to_datetime(
         X_dev_smote,
         y_dev_smote,
     )
+
+# من السطر 420 إلى 422:
+# هنا نختار الـ commits النظيفة الحقيقية من Development.
+# نستخدم X_dev الأصلية مو X_dev_smote،
+# لأن SMOTE ممكن تنتج عينات اصطناعية ما حصلت فعلًا.
+# نحتاج المراجع النظيفة تكون من تغييرات حقيقية
+# عشان نستخدمها لاحقًا في Anchors وحساب المعقولية.
 
     X_clean = X_dev.loc[
         y_dev == settings["clean_reference_class"]
