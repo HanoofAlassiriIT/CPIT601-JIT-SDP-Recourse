@@ -18,7 +18,7 @@ def get_allowed_features(
     configuration: str,
 ) -> list[str]:
     """Return the frozen evaluation mask for a configuration."""
-
+"""اقرأ الإعدادات المجمدة، واستخرج القسم الذي اسمه masks."""
     config = load_final_config()
 
     masks = config.get("masks")
@@ -32,7 +32,9 @@ def get_allowed_features(
     full_schema = get_feature_order(
         project
     )
+"""معرفة نوع القناع المطلوب : هذا الجزء يحوّل مثلًا "Strict" إلى "strict".
 
+بذلك يستطيع البرنامج التعامل مع اختلاف كتابة الأحرف الكبيرة والصغيرة."""
     configuration_normalized = (
         str(configuration)
         .strip()
