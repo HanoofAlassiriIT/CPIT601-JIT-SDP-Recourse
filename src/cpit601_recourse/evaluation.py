@@ -13,6 +13,15 @@ from .config import load_final_config
 from .data import get_feature_order
 
 
+# من السطر 16 إلى 88:
+# هذي الدالة تحدد الخصائص اللي نسمح بتغييرها
+# حسب المشروع ونوع القناع Strict أو Extended.
+# تقرأ القوائم المجمدة من FINAL_CONFIG وتتحقق منها.
+# في Strict نسمح بخصائص التعديل الحالي فقط،
+# وفي Extended نضيف ent.
+# إذا كان الإعداد All ترجع جميع خصائص النموذج.
+# الدالة ما تغير البيانات، بس ترجع أسماء الخصائص المسموحة.
+
 def get_allowed_features(
     project: str,
     configuration: str,
@@ -149,6 +158,15 @@ def get_changed_features(
             )
 
     return changed_features
+
+# من السطر 151 إلى 197:
+# هنا نقارن الـ commit الأصلي بالاقتراح
+# ونعرف أي خصائص تغيرت فعلًا.
+# بعدها نشوف هل كل التغييرات ضمن القناع المسموح.
+# إذا تغيرت خاصية ممنوعة، نعتبر الاقتراح غير actionable.
+# ونشترط كمان وجود تغيير واحد على الأقل.
+# هذا فحص لقابلية التدخل حسب تعريف دراستنا،
+# مو إثبات أن التعديل ممكن تنفيذه حرفيًا في Source Code.
 
 def evaluate_actionability(
     query_row,
