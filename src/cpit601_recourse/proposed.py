@@ -129,6 +129,12 @@ def generate_clean_anchor_cfs(
             "Frozen Proposed top_k changed."
         )
 
+# من السطر 123 إلى 130:
+# هنا نجيب كل خصائص النموذج بالترتيب الثابت.
+# بعدها نحدد الخصائص اللي مسموح نغيرها
+# حسب المشروع ونوع القناع Strict أو Extended.
+# باقي الخصائص تبقى موجودة في النموذج،
+# لكن ما نسمح بتغييرها أثناء توليد الاقتراحات.
     feature_order = get_feature_order(
         project
     )
@@ -264,7 +270,25 @@ def generate_clean_anchor_cfs(
                 differing_allowed
             ),
         )
+# من السطر 267 إلى 274:
+# هنا نأخذ نسخة من الـ commit الأصلي.
+# بعدها نمر على الخصائص المختارة للتغيير فقط،
+# وننسخ لها القيم الموجودة في الـ clean anchor.
+# كل خاصية ثانية تظل بنفس قيمتها الأصلية.
+# كذا نبني Counterfactual بدون تغيير الخصائص الممنوعة.
 
+
+# من السطر 259 إلى 274:
+# هنا نجرب مجموعات مختلفة من الخصائص المسموح تغييرها.
+# مو شرط نغير كل خصائص Strict أو Extended مرة وحدة.
+# نبدأ بتغيير خاصية واحدة، ثم مجموعات أكبر
+# إلى حد أقصى 3 خصائص حسب إعداد max_changes.
+# لكل محاولة ننسخ الـ commit الأصلي كامل،
+# ونستبدل فقط قيم الخصائص المختارة بقيم الـ clean anchor.
+# بقية الخصائص تظل مثل ما كانت في الـ commit الأصلي.
+# هذا تغيير على مستوى المقاييس، مو تعديل فعلي للـ Source Code.
+
+        
         for subset_size in range(
             1,
             maximum_subset_size + 1,
@@ -272,7 +296,7 @@ def generate_clean_anchor_cfs(
             for changed_features in combinations(
                 differing_allowed,
                 subset_size,
-            ):
+            ): 
                 candidate = query_row.copy()
 
                 for feature in changed_features:
