@@ -19,6 +19,15 @@ from .predictor import predict_defect_probability
 from .predictor import predict_labels
 
 
+# الدالة generate_clean_anchor_cfs:
+# هذي الدالة هي الجزء الأساسي لتوليد اقتراحات طريقتنا.
+# تستقبل commit واحد واسم المشروع ونوع التدخل.
+# تستخدم قيم من commits نظيفة حقيقية داخل Development،
+# وتولد اقتراحات بتغيير الخصائص المسموح بها فقط.
+# بعدها تفحص التنبؤ والمعقولية وترتب النتائج المقبولة.
+# ترجع الاقتراحات مع معلومات تشخيصية عن عملية البحث.
+# هذا كله يتم باستخدام النموذج الثابت بدون إعادة تدريبه.
+
 def generate_clean_anchor_cfs(
     query,
     project: str,
@@ -333,6 +342,12 @@ def generate_clean_anchor_cfs(
             candidates.drop_duplicates()
         )
     )
+
+# هنا نرسل الاقتراحات للنموذج الثابت باستخدام predict_labels.
+# بعدها نفحص هل النموذج صنف كل اقتراح CLEAN=0.
+# إذا صار التنبؤ صفر، نعتبر الاقتراح valid من ناحية التنبؤ.
+# لكن هذا لحاله ما يكفي لقبول الاقتراح النهائي،
+# لأنه لازم يمر بشروط المعقولية والتدخل وسلامة القيم.
 
     predictions = np.asarray(
         predict_labels(
