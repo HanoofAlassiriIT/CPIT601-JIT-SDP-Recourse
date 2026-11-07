@@ -287,6 +287,13 @@ def get_integer_like_features(
         integer_like_features
     )
 
+# هنا نفحص سلامة قيم الاقتراح حسب قواعد البحث المجمدة.
+# نتأكد إن جميع الخصائص أرقام منتهية، بدون NaN أو Infinity.
+# ونفحص إن الخصائص العددية الصحيحة اللي تغيرت
+# بقيت قيمها أعداد صحيحة، مثل la و nd و ns.
+# إذا خالفت خاصية القواعد نسجل اسمها ونرفض Semantic Validity.
+# هذا فحص رقمي محدد، مو ضمان إن التعديل ممكن في Source Code.
+
 def evaluate_semantic_validity(
     query_row,
     candidate_row,
@@ -428,6 +435,11 @@ def evaluate_semantic_validity(
         ),
     }
 
+# هذا هو المقيّم الموحد لكل اقتراحات Proposed و DiCE.
+# يفحص نفس الشروط لكل طريقة عشان تكون المقارنة متسقة.
+# الشروط هي Prediction Validity و Plausibility
+# و Actionability و Semantic Validity.
+# يرجع نتائج لكل Counterfactual وملخص واحد لكل commit.
 
 def evaluate_counterfactual_set(
     query,
@@ -758,6 +770,11 @@ def evaluate_counterfactual_set(
             dtype=float,
         )
 
+# هنا نتحقق إن قيم الاقتراح منتهية وإن Random Forest
+# يتنبأ بالفئة المطلوبة CLEAN=0.
+# إذا تحقق الشرطان يصبح valid=True.
+# لكن هذا مو كافي عشان نعتبر الاقتراح usable.
+
     valid = (
         finite_values_ok
         &
@@ -873,6 +890,11 @@ def evaluate_counterfactual_set(
         )
         .to_numpy()
     )
+
+# usable_core يجمع 3 شروط:
+# التنبؤ CLEAN، والمعقولية مقبولة، والتغييرات مسموحة.
+# بعدها نضيف شرط Semantic Validity عشان نحسب usable النهائي.
+# إذا فشل أي شرط من الأربعة يكون usable=False.
 
     usable_core = (
         valid
@@ -1114,6 +1136,13 @@ def evaluate_counterfactual_set(
         best_plausibility_ratio = np.nan
         best_robust_l1 = np.nan
         best_defect_probability = np.nan
+
+# من هذا السطر  إلى نهاية إنشاء commit_result:
+# هنا نجمع نتائج جميع الاقتراحات الخاصة بالـ commit.
+# إذا كان فيه اقتراح واحد على الأقل usable=True
+# نعتبر العملية ناجحة لهذا الـ commit باستخدام usable.any().
+# ونسجل عدد الاقتراحات الناجحة والفاشلة ومقاييس الجودة
+# عشان نستخدمها لاحقًا في Coverage وتحليل النتائج.
 
     commit_result = pd.DataFrame(
         [
