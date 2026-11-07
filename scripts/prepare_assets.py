@@ -464,6 +464,13 @@ frame["author_datetime"] = pd.to_datetime(
         X_clean
     )
 
+# هنا نحسب حد المعقولية tau من الـ commits النظيفة الحقيقية.
+# نطلب k+1 جيران لأن كل commit يكون جار لنفسه بمسافة صفر.
+# نستبعد أول جار ونحسب متوسط مسافة أقرب 5 جيران آخرين.
+# نكرر هذا لكل clean commit ثم نأخذ المئين 99 للمتوسطات.
+# الناتج هو tau، وهو الحد المرجعي لمشروع OpenStack أو Qt.
+# الحساب يعتمد على Development فقط، بدون Validation أو Test.
+
     loo_model = NearestNeighbors(
         n_neighbors=settings["knn_k"] + 1,
         metric=settings["knn_metric"],
