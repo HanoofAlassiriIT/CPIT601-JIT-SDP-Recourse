@@ -16,6 +16,11 @@ from .predictor import (
     validate_project,
 )
 
+# هذي الدالة تحمل أدوات المعقولية المجمدة لكل مشروع.
+# تشمل RobustScaler والـ Clean Development وNearestNeighbors
+# وعدد الجيران k وحد المعقولية tau.
+# تتحقق من توافق الخصائص والإعدادات قبل استخدامها.
+# ما تعيد تدريب الأدوات ولا تحسب tau من جديد.
 
 def load_plausibility_context(
     project: str,
@@ -112,7 +117,11 @@ def load_plausibility_context(
         "nn_model": nn_model,
     }
 
-
+# هنا نتحقق من خصائص الـ commit أو الاقتراح
+# ونحولها باستخدام RobustScaler المحفوظ من Development.
+# ما نحسب Median أو IQR من البيانات الجديدة.
+# بعدها نتأكد إن أبعاد القيم صحيحة وكلها أرقام منتهية.
+# نحتاج هذا التحويل عشان نحسب المسافات بشكل متسق.
 
 def transform_for_plausibility(
     project: str,
@@ -159,7 +168,11 @@ def transform_for_plausibility(
 
     return transformed
 
-
+# هنا نحول الاقتراح ونبحث عن أقرب 5 commits نظيفة حقيقية.
+# نحسب المسافة الإقليدية لكل جار باستخدام النموذج المحفوظ.
+# بعدها نأخذ متوسط المسافات الخمس لكل اقتراح.
+# الناتج يقيس قرب الاقتراح من نمط البيانات النظيفة.
+# هذا غير اختيار الـ 20 Anchor المستخدم لتوليد الاقتراحات.
 
 def mean_knn_distance(
     project: str,
@@ -216,6 +229,11 @@ def mean_knn_distance(
     return mean_distance
 
 
+# هنا نحسب Plausibility Ratio لكل اقتراح.
+# نقسم متوسط مسافة أقرب 5 جيران على tau الخاص بالمشروع.
+# إذا PR أقل من أو تساوي 1 يجتاز شرط المعقولية.
+# وإذا أكبر من 1 يكون بعيدًا عن الحد المرجعي المسموح.
+# هذي النسبة ما تثبت أن الاقتراح قابل للتنفيذ في Source Code.
 
 def plausibility_ratio(
     project: str,
@@ -293,6 +311,10 @@ def _ratio_is_accepted(
 
     return ratio <= cutoff
 
+# هنا نحسب PR ونقارنه بالحد المجمد cutoff=1.0.
+# ترجع الدالة True إذا كانت النسبة <= 1،
+# وترجع False إذا تجاوزتها.
+# هذا فحص المعقولية فقط، مو قرار قبول الـ Recourse النهائي.
 
 def is_empirically_plausible(
     project: str,
@@ -319,6 +341,11 @@ def is_empirically_plausible(
         cutoff,
     )
 
+# هنا نقيس مقدار التغيير بين الـ commit الأصلي والاقتراح.
+# نحول الاثنين باستخدام نفس RobustScaler،
+# ثم نجمع الفروق المطلقة بين خصائصهما.
+# الناتج Robust L1 ونستخدمه لترتيب الاقتراحات.
+# هذا غير kNN اللي يقارن الاقتراح ببيانات Clean Development.
 
 
 def robust_l1_distance(
